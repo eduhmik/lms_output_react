@@ -39,7 +39,7 @@ module.exports = {
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new HtmlWebpackPlugin({
-        template: "./dist/index.html",
+        template: "./src/index.html",
         "filename": "index.html"
       })
     ],
