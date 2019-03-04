@@ -1,21 +1,39 @@
-// Filename ./src/App.jsx
-// Import react
-import React from 'react';
-class App extends React.Component {
-render() {
-  return (
-      <div>
-      <div class="jumbotron">
-      <h1 class="display-4">Amazing React, Bootstrap and Webpack</h1>
-      <p class="lead">Created with love</p>
-      <hr class="my-4"/>
-      <p>It uses utility classes for typography and spacing to space content out
-      within the larger container.</p>
-      <p class="lead">
-      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-      </p>
-      </div>
+import React, { Component } from "react";
+import Contacts from "./components/contacts/Contacts";
+import AddContact from "./components/contacts/AddContact";
+import UpdateContact from "./components/contacts/UpdateContact";
+import About from "./components/pages/About";
+import NotFound from './components/pages/NotFound';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { Provider } from "react-redux";
+import "./App.scss";
+import Header from "./components/layout/Header";
+import "bootstrap/dist/css/bootstrap.min.css";
+import store from "./store";
 
+
+class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+      <Router>
+      <div className="App">
+        <Header branding="Contact Manager" />
+        <div className="container">
+        <Switch>
+          <Route exact path="/" component = {Contacts} />
+          <Route exact path="/contact/add" component = {AddContact} />
+          <Route exact path="/contact/update/:id" component = {UpdateContact} />
+          <Route exact path="/about" component = {About} />
+          <Route component={NotFound} />
+
+        </Switch>
+        </div>
       </div>
-    );}}
+      </Router>
+      </Provider>
+    );
+  }
+}
+
 export default App;

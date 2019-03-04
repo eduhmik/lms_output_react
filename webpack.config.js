@@ -1,8 +1,10 @@
 const webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+let HtmlWebpackPlugin = require('html-webpack-plugin');
+require("babel-core/register");
+require("babel-polyfill");
 
 module.exports = {
-    entry: './src/index.js',
+    entry: ['babel-polyfill', './src/index.js'],
     module: {
       rules: [
         {
@@ -41,7 +43,7 @@ module.exports = {
       new HtmlWebpackPlugin({
         template: "./src/index.html",
         "filename": "index.html"
-      })
+      }),
     ],
     devServer: {
       // contentBase: './dist',
